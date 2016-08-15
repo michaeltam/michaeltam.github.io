@@ -1,5 +1,3 @@
-<script>
-  $(document).ready(function(){
-    console.log("Welcome");
-  });
-</script>
+$(document).ready(function(){
+  console.log("Welcome");
+});
