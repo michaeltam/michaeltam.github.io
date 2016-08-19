@@ -1,4 +1,4 @@
-h1,h2,h3,ul{ margin: 0px; padding: 0px; }
+h1,h2,h3{ margin: 0px; padding: 0px; }
 #main div:nth-child(odd){ background-color: #e6ffcc; }
 #main div:nth-child(even){ background-color: #ffe6cc; }
 #main div{ border-top: 1px solid silver; }

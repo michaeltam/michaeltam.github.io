@@ -1,26 +1,26 @@
-<html ng-app='myModule'>
+<html ng-app="myModule">
 <head>
 
-<!--<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js'></script>  -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>  -->
 
-<script src='./scripts/angular.min.js'></script>
-<script src='./scripts/myScript.js'></script>
-<script src='./scripts/filters.js'></script>
-<link rel='stylesheet' href='./style/myStyle.css' > 
+<script src="./scripts/angular.min.js"></script>
+<script src="./scripts/myScript.js"></script>
+<script src="./scripts/filters.js"></script>
+<link rel="stylesheet" href="./style/myStyle.css" > 
 </head>
 <body>
-	<div id='main' ng-controller='myController'>
+	<div id="main" ng-controller="myController">
 		
 		<div>
 			<h1> Two way binding</h1>
 			<p>When the view is updated the model is updated  </p>
-			<input type='text' ng-model='location.name' />
+			<input type="text" ng-model="location.name" />
 			<p>{{ location.name }}</p>
 			<!-- two way data binding ends -->
 
 			<p>{{ location.capital }}</p>
 			<p>{{ greeting }}</p>
-			<img ng-src='{{ location.flag }}' alt='{{ location.name + ' Flag'}} '/>
+			<img ng-src="{{ location.flag }}" alt="{{ location.name + " Flag"}} "/>
 		</div>
 
 		<div>
@@ -36,7 +36,7 @@
 				</thead>
 				<tbody>
 						<!-- foreach loop -->
-						<tr ng-repeat='employee in employees'> 
+						<tr ng-repeat="employee in employees"> 
 							<td>{{ employee.firstName }}</td>
 							<td>{{ employee.lastName }}</td>
 							<td>{{ employee.gender }}</td>
@@ -48,11 +48,11 @@
 			<h3>Parent and Child index</h3>
 			<ul>
 				<!-- to get parent index -->
-				<!-- $parent.$index or ng-init='parentIndex = $index'  -->
-				<li ng-repeat='country in countries' ng-init = 'parentIndex = $index' > 
+				<!-- $parent.$index or ng-init="parentIndex = $index"  -->
+				<li ng-repeat="country in countries" ng-init = "parentIndex = $index" > 
 					{{ country.name }} - index = {{ $index }}
 					<ul>
-						<li ng-repeat = 'city in country.cities' >
+						<li ng-repeat = "city in country.cities" >
 							<br /> ParentIndex Method 1 --- index =  {{ $parent.$index }}
 							<br />ParentIndex Method 2 --- index = {{ parentIndex }}
 							<br />Loop Method -- {{ city.name }} -  index = {{ $index }}
@@ -65,12 +65,12 @@
 		<div>
 			<h3>Event handler </h3>
 			<p>name -- Likes --  Dislikes -- Like/Dislike</p>
-			<p ng-repeat='technology in technologies'>
+			<p ng-repeat="technology in technologies">
 				{{ technology.name }} 
 				{{ technology.likes }}
 				{{ technology.dislikes }}
-				<input type='button' value='Like' ng-Click='incrementLikes(technology)' />
-				<input type='button' value='Dislike' ng-Click='incrementDislikes(technology)' />
+				<input type="button" value="Like" ng-Click="incrementLikes(technology)" />
+				<input type="button" value="Dislike" ng-Click="incrementDislikes(technology)" />
 			</p> 
 		</div>
 
@@ -89,31 +89,31 @@
 
 			<hr>
 
-			Rows to display: <input type='number' step='1' min='0' max='4' ng-model='rowLimit' />
+			Rows to display: <input type="number" step="1" min="0" max="4" ng-model="rowLimit" />
 			<br /><br />
-			Order By: <select ng-model='sortColumn'>
-						<option value='name'>name</option>
-						<option value='birth'>birth</option>
-						<option value='gender'>gender</option>
-						<option value='salary'>salary</option>
+			Order By: <select ng-model="sortColumn">
+						<option value="name">name</option>
+						<option value="birth">birth</option>
+						<option value="gender">gender</option>
+						<option value="salary">salary</option>
 					  </select>
 			<table>
 				<thead>
 					<tr>
-						<td ng-click='sortData('name')'>Name <span ng-class='getSortClass('name')'></span></td>
-						<td ng-click='sortData('birth')'>Day of Birth <span ng-class='getSortClass('birth')'></span></td>
-						<td ng-click='sortData('gender')'>Gender <span ng-class='getSortClass('gender')'></span></td>
-						<td ng-click='sortData('salary')'>Salary (number) <span ng-class='getSortClass('salary')'></span></td>
-						<td ng-click='sortData('salary')'>Salary (currency) <span ng-class='getSortClass('salary')'></span></td>
+						<td ng-click="sortData("name")">Name <span ng-class="getSortClass("name")"></span></td>
+						<td ng-click="sortData("birth")">Day of Birth <span ng-class="getSortClass("birth")"></span></td>
+						<td ng-click="sortData("gender")">Gender <span ng-class="getSortClass("gender")"></span></td>
+						<td ng-click="sortData("salary")">Salary (number) <span ng-class="getSortClass("salary")"></span></td>
+						<td ng-click="sortData("salary")">Salary (currency) <span ng-class="getSortClass("salary")"></span></td>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat='employee in employees | limitTo:rowLimit:1 | orderBy:sortColumn:reverseSort'>
+					<tr ng-repeat="employee in employees | limitTo:rowLimit:1 | orderBy:sortColumn:reverseSort">
 						<td>{{employee.firstName}}</td>
-						<td>{{employee.birth | date:'dd/MM/yyyy'}}</td>
+						<td>{{employee.birth | date:"dd/MM/yyyy"}}</td>
 						<td>{{employee.gender}}</td>
 						<td>{{employee.salary | number:2}}</td>
-						<td>{{employee.salary | currency:'&pound;':1}}</td>
+						<td>{{employee.salary | currency:"&pound;":1}}</td>
 
 					</tr>
 				</tbody>
@@ -125,16 +125,16 @@
 		<div>
 			<table>
 				<thead>
-					<tr ng-repeat='a in animal | limitTo:1'>
-						<td ng-repeat='(k,v) in a' ng-click='animalSortData(k)'>
-							{{ k }} <span ng-class='getAnimalSortClass(k)'></span>
+					<tr ng-repeat="a in animal | limitTo:1">
+						<td ng-repeat="(k,v) in a" ng-click="animalSortData(k)">
+							{{ k }} <span ng-class="getAnimalSortClass(k)"></span>
 						</td>
 					</tr>
 				</thead>
 
 				<tbody>
-					<tr ng-repeat='a in animal | orderBy:animalSortColumn:animalreverseSort'>
-						<td ng-repeat='(k,v) in a' >{{ v }}</td>
+					<tr ng-repeat="a in animal | orderBy:animalSortColumn:animalreverseSort">
+						<td ng-repeat="(k,v) in a" >{{ v }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -142,8 +142,8 @@
 
 		<div>
 			<h1>Searching...</h1>
-			Search <input type='text' placeholder='Search employee' ng-model='searchEmployee.firstName' />
-			<input type='checkbox' ng-model='exactMatch'/>
+			Search <input type="text" placeholder="Search employee" ng-model="searchEmployee.firstName" />
+			<input type="checkbox" ng-model="exactMatch"/> ExactMatch
 			<table>
 				<thead>
 					<tr>
@@ -155,7 +155,7 @@
 				</thead>
 				<tbody>
 						<!-- foreach loop -->
-						<tr ng-repeat='employee in employees | filter:searchEmployee:exactMatch'> 
+						<tr ng-repeat="employee in employees | filter:searchEmployee:exactMatch"> 
 							<td>{{ employee.firstName }}</td>
 							<td>{{ employee.lastName }}</td>
 							<td>{{ employee.gender }}</td>
@@ -166,7 +166,7 @@
 
 
 			<h3>Search first and last name only</h3>
-			<input type='text' placeholder='Search in first and last name' ng-model='searchEmployee2'/>
+			<input type="text" placeholder="Search in first and last name" ng-model="searchEmployee2"/>
 			<table>
 				<thead>
 					<tr>
@@ -177,7 +177,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat='employee in employees | filter:employeeSearch'> 
+					<tr ng-repeat="employee in employees | filter:employeeSearch"> 
 						<td>{{ employee.firstName }}</td>
 						<td>{{ employee.lastName }}</td>
 						<td>{{ employee.gender }}</td>
@@ -202,7 +202,7 @@
 				</thead>
 				<tbody>
 						<!-- foreach loop -->
-						<tr ng-repeat='employee in employees'> 
+						<tr ng-repeat="employee in employees"> 
 							<td>{{ employee.firstName }}</td>
 							<td>{{ employee.lastName }}</td>
 							<td>{{ employee.genderSub | gender }}</td>
@@ -219,42 +219,78 @@
 			<p>Show and hide html elements</p>
 			<p>Click hide and show to display salary column</p>
 		
-			<input type='checkbox' ng-model='hideSalary' /> Hide Salary<br /><br />
+			<input type="checkbox" ng-model="hideSalary" /> Hide Salary<br /><br />
 			<table>
 				<thead>
 					<tr>
 						<td>firstname</td>
 						<td>lastname</td>
 						<td>gender</td>
-						<td ng-hide='hideSalary'>salary</td>
-						<td ng-show='hideSalary'>salary</td>
+						<td ng-hide="hideSalary">salary</td>
+						<td ng-show="hideSalary">salary</td>
 					</tr>
 				</thead>
 				<tbody>
 						<!-- foreach loop -->
-						<tr ng-repeat='employee in employees | filter:searchEmployee:exactMatch'> 
+						<tr ng-repeat="employee in employees | filter:searchEmployee:exactMatch"> 
 							<td>{{ employee.firstName }}</td>
 							<td>{{ employee.lastName }}</td>
 							<td>{{ employee.gender }}</td>
-							<td ng-hide='hideSalary'>{{ employee.salary }}</td>
-							<td ng-show='hideSalary'>####</td>
+							<td ng-hide="hideSalary">{{ employee.salary }}</td>
+							<td ng-show="hideSalary">####</td>
 						</tr>
 				</tbody>
 			</table>
 
 		</div>
 
-		<div>
+		<div ng-init="
+			employee = [
+				{name:"Mike",age:121},
+				{name:"Houston",age:52},
+				{name:"Jackson",age:32}
+			]
+			
+		">
 			<h1>ng-init directive</h1>
 			<p>Allow you to evaluate an expression in current scope</p>
+			<table>
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Age</td>
+					</tr>
+				</thead>
+				<tbody>
+						<!-- foreach loop -->
+						<tr ng-repeat="e in employee"> 
+							<td>{{ e.name }}</td>
+							<td>{{ e.age }}</td>
+						</tr>
+				</tbody>
+			</table>
 		</div>
 
+		<div>
+			<h1>ng-include directive</h1>
+			<p>ng-include is to embed an html page into another html page</p>
+			<p>This technologies is to resue a specific view in multiples pages in your application</p>
+			Select View:
+			<select ng-model="employeeView">
+				<option value="{{ employee_table_view }}">Table View</option>
+				<option value="{{ employee_list_view }}">List View</option>
+			</select>
+			<span ng-include="employeeView"></span>
+		</div>
 
+		<div>
+			<h1>Http request json obj from sql server<h1>
+		</div>
 
 		</div>
 		<!-- end of Main div  ng-controller -->
 	
-	<div id='footer'></div>
+	<div id="footer"></div>
 
 	</div>
 </body>
