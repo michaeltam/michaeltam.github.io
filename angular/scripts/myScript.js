@@ -3,8 +3,12 @@ sqlServerJsonObj = 'http://localhost/github/michaeltam.github.io/angular/serverj
 /// <reference path="angular.min.js" />
 var myApp = angular
 			.module("myModule",[])
-			.controller("myController",function($scope){
+			.controller("myController",function($scope, $http){
 
+				$http.get(sqlServerJsonObj)
+				.then(function (response) {
+					$scope.sqlServerJsonObj = response.data;
+				});
 
 				var location = {
 					name : "United State of America",
@@ -14,14 +18,12 @@ var myApp = angular
 				//Custom filter see line 134
 
 
-
-
 				var employees = [
-					{ firstName: 'Apple',  lastName: 'Hasting', birth: new Date('November 23 , 1980'), gender: 'Male',genderSub: 1, salary: 5500.36 },
-					{ firstName: 'Bennay', lastName: 'Ceaser', birth: new Date('May 30 , 1975'), gender: 'Male',genderSub: 1, salary: 250.256 },
-					{ firstName: 'Cathay', lastName: 'Edmond', birth: new Date('July 5 , 1989'), gender: 'Female',genderSub: 2, salary: 331324500.44 },
-					{ firstName: 'Denny', lastName: 'Lowis', birth: new Date('Jun 14 , 1991'), gender: 'Male',genderSub: 3 , salary: 453010.253 },
-					{ firstName: 'Edmond', lastName: 'King', birth: new Date('Feb 14 , 1955'), gender: 'Female',genderSub: 2, salary: 5233010.953 },
+					{ firstName: "Apple",  lastName: "Hasting", birth: new Date("November 23 , 1980"), gender: "Male",genderSub: 1, salary: 5500.36 },
+					{ firstName: "Bennay", lastName: "Ceaser", birth: new Date("May 30 , 1975"), gender: "Male",genderSub: 1, salary: 250.256 },
+					{ firstName: "Cathay", lastName: "Edmond", birth: new Date("July 5 , 1989"), gender: "Female",genderSub: 2, salary: 331324500.44 },
+					{ firstName: "Denny", lastName: "Lowis", birth: new Date("Jun 14 , 1991"), gender: "Male",genderSub: 3 , salary: 453010.253 },
+					{ firstName: "Edmond", lastName: "King", birth: new Date("Feb 14 , 1955"), gender: "Female",genderSub: 2, salary: 5233010.953 },
 				];
 
 				var countries = [

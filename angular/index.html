@@ -284,7 +284,22 @@
 		</div>
 
 		<div>
-			<h1>Http request json obj from sql server<h1>
+			<h1>Http request json obj from sql server<h2>
+			<table>
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Age</td>
+					</tr>
+				</thead>
+				<tbody>
+						<!-- foreach loop -->
+						<tr ng-repeat="obj in sqlServerJsonObj"> 
+							<td>{{ obj.name }}</td>
+							<td>{{ obj.age }}</td>
+						</tr>
+				</tbody>
+			</table>
 		</div>
 
 		</div>
