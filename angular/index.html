@@ -1,1 +1,16 @@
-hello
+<html ng-app="myModule">
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="./scripts/myScript.js"></script>
+<link rel="stylesheet" href="./style/myStyle.css" > 
+</head>
+<body>
+	<div ng-controller="myController">
+		<p>{{ country.name }}</p>
+		<p>{{ country.capital }}</p>
+
+		<img ng-src="{{ country.flag }}" alt="{{ country.name + ' Flag'}} "/>
+	</div>
+</body>
+</html>
