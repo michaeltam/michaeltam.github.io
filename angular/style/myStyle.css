@@ -1,1 +1,25 @@
+h1,h2,h3,ul{ margin: 0px; padding: 0px; }
+#main div:nth-child(odd){ background-color: #e6ffcc; }
+#main div:nth-child(even){ background-color: #ffe6cc; }
 img{ height: 100px; weight: 200px; }
+td{ border: 1px solid black;}
+
+.arrow_up{
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 10px solid black;
+	display: inline-block;
+}
+
+.arrow_down{
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 10px solid black;
+	display: inline-block;
+}
+
+#footer{ height: 300px; }
