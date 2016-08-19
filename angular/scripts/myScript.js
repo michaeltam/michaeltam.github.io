@@ -1,3 +1,5 @@
+
+
 /// <reference path="angular.min.js" />
 var myApp = angular
 			.module("myModule",[])
@@ -7,14 +9,14 @@ var myApp = angular
 					capital : "Washington, D.C.",
 					flag :  "./images/usa_flag.jpg"
 				};
-
+				//Custom filter see line 134
 
 				var employees = [
-					{ firstName: "Apple",  lastName: "Hasting", birth: new Date("November 23 , 1980"), gender: "Male", salary: 5500.36 },
-					{ firstName: "Bennay", lastName: "Ceaser", birth: new Date("May 30 , 1975"), gender: "Male", salary: 250.256 },
-					{ firstName: "Cathay", lastName: "Edmond", birth: new Date("July 5 , 1989"), gender: "Female", salary: 331324500.44 },
-					{ firstName: "Denny", lastName: "Lowis", birth: new Date("Jun 14 , 1991"), gender: "Male", salary: 453010.253 },
-					{ firstName: "Edmond", lastName: "King", birth: new Date("Feb 14 , 1955"), gender: "Female", salary: 5233010.953 },
+					{ firstName: "Apple",  lastName: "Hasting", birth: new Date("November 23 , 1980"), gender: "Male",genderSub: 1, salary: 5500.36 },
+					{ firstName: "Bennay", lastName: "Ceaser", birth: new Date("May 30 , 1975"), gender: "Male",genderSub: 1, salary: 250.256 },
+					{ firstName: "Cathay", lastName: "Edmond", birth: new Date("July 5 , 1989"), gender: "Female",genderSub: 2, salary: 331324500.44 },
+					{ firstName: "Denny", lastName: "Lowis", birth: new Date("Jun 14 , 1991"), gender: "Male",genderSub: 3 , salary: 453010.253 },
+					{ firstName: "Edmond", lastName: "King", birth: new Date("Feb 14 , 1955"), gender: "Female",genderSub: 2, salary: 5233010.953 },
 				];
 
 				var countries = [
@@ -110,21 +112,21 @@ var myApp = angular
 				};
 
 				$scope.employeeSearch = function(item){
-		
-					if (item.firstName.toLowerCase().indexOf("denny") != -1){
-						console.log(item.firstName);
-						console.log(item);
-					}
+					if ($scope.searchEmployee2 == undefined || $scope.searchEmployee2 == '') { return true; }
+					else {
+						if ( 
+							item.firstName.toLowerCase().indexOf($scope.searchEmployee2.toLowerCase()) != -1 ||
+							item.lastName.toLowerCase().indexOf($scope.searchEmployee2.toLowerCase()) != -1
+							) {
+							return true;
+						}
+						
+						/*if ( item.gender.indexOf($scope.searchEmployee2) != -1 ) return true;*/
 
-				// 	if ( $scope.searchEmployee2 == undefined ) {
-				// 		return true;
-				// 	}
-				// 	else {
-				// 		if ( item.name.toLowerCase().indexOf( $scope.searchEmployee2.toLowerCase() != -1 ) )
-				// 		 console.log('found');	
-					// }
-					return true;
-				
+					} 
+					
+					return false;
 				};
 
 			});
+
