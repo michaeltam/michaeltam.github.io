@@ -6,6 +6,7 @@
 <script src="./scripts/angular.min.js"></script>
 <script src="./scripts/myScript.js"></script>
 <script src="./scripts/filters.js"></script>
+<script src="./scripts/services.js"></script>
 <link rel="stylesheet" href="./style/myStyle.css" > 
 </head>
 <body>
@@ -100,11 +101,11 @@
 			<table>
 				<thead>
 					<tr>
-						<td ng-click="sortData("name")">Name <span ng-class="getSortClass("name")"></span></td>
-						<td ng-click="sortData("birth")">Day of Birth <span ng-class="getSortClass("birth")"></span></td>
-						<td ng-click="sortData("gender")">Gender <span ng-class="getSortClass("gender")"></span></td>
-						<td ng-click="sortData("salary")">Salary (number) <span ng-class="getSortClass("salary")"></span></td>
-						<td ng-click="sortData("salary")">Salary (currency) <span ng-class="getSortClass("salary")"></span></td>
+						<td ng-click="sortData('name')">Name <span ng-class="getSortClass('name')"></span></td>
+						<td ng-click="sortData('birth')">Day of Birth <span ng-class="getSortClass('birth')"></span></td>
+						<td ng-click="sortData('gender')">Gender <span ng-class="getSortClass('gender')"></span></td>
+						<td ng-click="sortData('salary')">Salary (number) <span ng-class="getSortClass('salary')"></span></td>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -118,8 +119,6 @@
 					</tr>
 				</tbody>
 			</table>
-
-
 		</div>
 
 		<div>
@@ -185,6 +184,7 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
 
 		<div>
 			<h1> Custom Filter</h1>
@@ -246,9 +246,9 @@
 
 		<div ng-init="
 			employee = [
-				{name:"Mike",age:121},
-				{name:"Houston",age:52},
-				{name:"Jackson",age:32}
+				{name:'Mike',age:121},
+				{name:'Houston',age:52},
+				{name:'Jackson',age:32}
 			]
 			
 		">
@@ -300,6 +300,41 @@
 						</tr>
 				</tbody>
 			</table>
+		</div>
+
+		<div>
+			<h1>Writing Custom Service</h1>
+			<input type="text" ng-model="input" /><br/>
+			<input type="text" ng-model="output"/><br />
+			<input type="button" ng-click="strUpdate(input)" value="Update text"/>
+		</div>
+
+		<div>
+			<h1>Scrolling</h1>
+			<button id="long_p_top" ng-click="scrollTo('long_p_bottom')">Go to Bottom</button>
+			<div id="long_p"><p> static content</p></div>
+			<button id="long_p_bottom" ng-click="scrollTo('long_p_top')">Go to Top</button>
+
+			<button ng-click="schollToFieldset('usa')">USA</button>
+			<button ng-click="schollToFieldset('india')">India</button>
+			<button ng-click="schollToFieldset('uk')">UK</button>
+			
+			<div class="short_div">
+				<fieldset id="usa">
+					<legend>USA</legend>
+					<p class="long_p"> USA content</p>
+				</fieldset>
+
+				<fieldset id="india">
+					<legend>India</legend>
+					<p class="long_p"> India content</p>
+				</fieldset>
+
+				<fieldset id="uk">
+					<legend>UK</legend>
+					<p class="long_p"> UK content</p>
+				</fieldset>
+			</div>
 		</div>
 
 		</div>

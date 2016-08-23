@@ -3,7 +3,7 @@ sqlServerJsonObj = 'http://localhost/github/michaeltam.github.io/angular/serverj
 /// <reference path="angular.min.js" />
 var myApp = angular
 			.module("myModule",[])
-			.controller("myController",function($scope, $http){
+			.controller("myController",function($scope, $http, stringService, $location, $anchorScroll){
 
 				$http.get(sqlServerJsonObj)
 				.then(function (response) {
@@ -139,6 +139,22 @@ var myApp = angular
 				$scope.employee_list_view = './view/employee_list.html';
 				$scope.employeeView = $scope.employee_table_view;
 
+				$scope.strUpdate = function(input){
+					$scope.output = stringService.spaceoutCapitalizedString(input);
+				};
+
+				$scope.scrollTo = function(scrollLocation){
+					// scroll to specific hash when hash is updated
+					$location.hash(scrollLocation); //append info to address bar
+					$anchorScroll(); //read the hash and scroll to the specified location
+					// $anchorScroll.yoffset = 230;
+				};
+
+				$scope.schollToFieldset = function(scrollLocation){
+					$location.hash(scrollLocation); //append info to address bar
+					$anchorScroll(); //read the hash and scroll to the specified location
+					// $anchorScroll.yoffset = 30;
+				};
 
 			});
 
