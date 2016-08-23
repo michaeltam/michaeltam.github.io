@@ -26,5 +26,3 @@ td{ border: 1px solid black;}
 
 #long_p,.long_p{ height:600px; width: 350px; background-color: white !important; }
 .short_div{ height: 150px; overflow: scroll; }
-
-#footer{ height: 300px; }
