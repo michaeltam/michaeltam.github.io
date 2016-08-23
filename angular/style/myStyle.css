@@ -26,3 +26,8 @@ td{ border: 1px solid black;}
 
 #long_p,.long_p{ height:600px; width: 350px; background-color: white !important; }
 .short_div{ height: 150px; overflow: scroll; }
+
+#route_left_panel{ width: 20%; float:left;}
+#route_right_panel{ width: 80%; float:left;}
+
+#footer{ margin-top: 300px; }

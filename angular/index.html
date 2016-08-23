@@ -5,8 +5,10 @@
 
 <script src="./scripts/angular.min.js"></script>
 <script src="./scripts/myScript.js"></script>
+<script src="./scripts/angular-route.min.js"></script>
 <script src="./scripts/filters.js"></script>
 <script src="./scripts/services.js"></script>
+<base href="./" />
 <link rel="stylesheet" href="./style/myStyle.css" > 
 </head>
 <body>
@@ -210,7 +212,6 @@
 						</tr>
 				</tbody>
 			</table>
-
 		</div>
 
 
@@ -241,7 +242,6 @@
 						</tr>
 				</tbody>
 			</table>
-
 		</div>
 
 		<div ng-init="
@@ -337,6 +337,36 @@
 			</div>
 		</div>
 
+
+		<div>
+			<h1>Angular routing</h1>
+			<p>To remote #,enable html5mode routing</p>
+			<span id="route_left_panel">
+				<a href="#/home">Home</a>
+				<a href="#/courses">Courses</a>
+				<a href="#/students">Students</a>
+			</span>
+			<span id="route_right_panel">
+				<ng-view></ng-view>
+			</span>
+		</div>
+
+		<div>
+			<h1>Nested Scopes & Controller as Syntax</h1>
+			<span ng-controller="level1 as l1">
+				{{ l1.name }}
+				<span ng-controller="level2 as l2">
+					{{ l2.name }}
+					<span ng-controller="level3 as l3">
+						{{ l3.name }}
+					</span>
+				</span>
+			</span>	
+		</div>
+
+		<div>
+			d
+		</div>
 		</div>
 		<!-- end of Main div  ng-controller -->
 	

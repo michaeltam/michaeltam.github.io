@@ -2,12 +2,13 @@ sqlServerJsonObj = 'http://localhost/github/michaeltam.github.io/angular/serverj
 
 /// <reference path="angular.min.js" />
 var myApp = angular
-			.module("myModule",[])
-			.controller("myController",function($scope, $http, stringService, $location, $anchorScroll){
+			.module("myModule",["ngRoute"])
+			.controller("myController",function($scope, $http, $log, stringService, $location, $anchorScroll){
 
 				$http.get(sqlServerJsonObj)
 				.then(function (response) {
 					$scope.sqlServerJsonObj = response.data;
+					$log.info(response); //same as console.log
 				});
 
 				var location = {
@@ -158,3 +159,59 @@ var myApp = angular
 
 			});
 
+//routing
+myApp.config(function($routeProvider){
+	$routeProvider.caseInsensitiveMatch = true;
+
+	$routeProvider
+		.when("/",{
+			templateUrl: "./templates/home.html"
+		})
+		.when("/404",{
+			templateUrl: "./templates/404.html"
+		})
+		.when("/home",{
+			templateUrl: "./templates/home.html",
+			controller: "homeController as homeCtr"
+		})
+		.when("/courses",{
+			templateUrl: "./templates/courses.html",
+			controller: "courcesController",
+			controllerAs: "courseCtr"
+		})
+		.when("/students",{
+			templateUrl: "./templates/students.html",
+			controller: "studentsController"
+		})
+		.when("/students/:id",{
+			templateUrl: "./templates/studentDetail.html",
+			controller: "studentsDetailController",
+			caseInsensitiveMatch: true
+		})
+		.otherwise({ redirectTo: '/404' });
+})
+.controller("homeController",function(){
+	this.homePageWelcome = "Welcome to home";
+})
+.controller("courcesController",function(){
+	this.coursesPageList = "C++,VB.Net,PHP,Java,Angular";
+})
+.controller("studentsController",function($scope){
+	$scope.studentsPageName = "Mike,Jackson, Jamie,Marry";
+})
+.controller("studentsDetailController",function($scope,$routeParams){
+	$scope.student = {id: $routeParams.id, name:"Static Name Mike"};
+});
+
+
+//controller as syntax
+myApp
+.controller('level1',function(){
+	this.name = "level 1"
+})
+.controller('level2',function(){
+	this.name = "level 2"
+})
+.controller('level3',function(){
+	this.name = "level 3"
+});
