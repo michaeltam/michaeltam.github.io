@@ -1,7 +1,7 @@
 h1,h2,h3{ margin: 0px; padding: 0px; }
-#main div:nth-child(odd){ background-color: #e6ffcc; }
-#main div:nth-child(even){ background-color: #ffe6cc; }
-#main div{ border-top: 1px solid silver; }
+#main > div:nth-child(odd){ background-color: #e6ffcc; }
+#main > div:nth-child(even){ background-color: #ffe6cc; }
+#main > div{ border-top: 1px solid silver; }
 
 img{ height: 100px; weight: 200px; }
 td{ border: 1px solid black;}
@@ -29,5 +29,7 @@ td{ border: 1px solid black;}
 
 #route_left_panel{ width: 20%; float:left;}
 #route_right_panel{ width: 80%; float:left;}
+
+.empty{ display:block;clear:both; margin:0px; padding:0px; height: 0px;}
 
 #footer{ margin-top: 300px; }

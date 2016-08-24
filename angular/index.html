@@ -344,11 +344,15 @@
 			<span id="route_left_panel">
 				<a href="#/home">Home</a>
 				<a href="#/courses">Courses</a>
+				<a href="#/schedule">Schedule</a>
 				<a href="#/students">Students</a>
 			</span>
+
 			<span id="route_right_panel">
 				<ng-view></ng-view>
 			</span>
+
+			<span class="empty">&nbsp;</span>
 		</div>
 
 		<div>
@@ -365,8 +369,37 @@
 		</div>
 
 		<div>
-			d
+			<h1>Angular route Reload</h1>
+			<p>Reload just the current route instead of the entire app</p>
+			<p>update the "serverjobjstudents.html"  and click Angular routing students reload button to see the result.
 		</div>
+
+		<div>
+			<h1>$scope vs $rootScope</h1>
+			<p>$rootScope is avalible globally for all controller</p>
+			<p>$scope only avalible to controller that's created and its children</p>
+			
+			<div ng-controller="redColorController">
+				RootScope : {{ shareColor }}<br />
+				Scope : {{ redColor }}<br />
+				Scope : 
+					<span ng-show="greenColor == undefinded" style="color:red;">Green is not definded</span>
+					<br /><br />
+			</div>
+			<div ng-controller="greenColorController">
+				RootScope : {{ shareColor }}<br />
+				Scope : {{ greenColor }}<br />
+				Scope : 
+					<span ng-show="redColor == undefinded" style="color:red;">Red is not definded</span>
+			</div>	
+		</div>
+
+		<div>
+			<h1>AngularJs rouate - resolve property</h1>
+			<p>1. The resolve property contains one or more promises that must resolve successfully before transitioning to the new route</p>
+			<p>2. The property names used in the route->resolve property can be injected into the controller. This means the controller does nto have to fetch the data.
+		</div>
+
 		</div>
 		<!-- end of Main div  ng-controller -->
 	

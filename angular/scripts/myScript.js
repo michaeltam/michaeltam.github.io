@@ -1,4 +1,5 @@
-sqlServerJsonObj = 'http://localhost/github/michaeltam.github.io/angular/serverjobj.html'
+sqlServerJsonObj = 'http://localhost/github/michaeltam.github.io/angular/serverjobj.html';
+sqlServerJsonObjStudents = 'http://localhost/github/michaeltam.github.io/angular/serverjobjstudents.html';
 
 /// <reference path="angular.min.js" />
 var myApp = angular
@@ -179,28 +180,73 @@ myApp.config(function($routeProvider){
 			controller: "courcesController",
 			controllerAs: "courseCtr"
 		})
+		.when("/schedule",{
+			template: "<h4>Inline Template</h4>",
+		})
 		.when("/students",{
 			templateUrl: "./templates/students.html",
-			controller: "studentsController"
+			controller: "studentsController as studentsCtr"
 		})
-		.when("/students/:id",{
+		.when("/students/:id/:name?",{ //name parameter is optional
 			templateUrl: "./templates/studentDetail.html",
 			controller: "studentsDetailController",
 			caseInsensitiveMatch: true
+		})
+		.when("/studentsSearch/:name?",{
+			templateUrl: "./templates/studentsSearch.html",
+			controller: "studentsSearchController"
 		})
 		.otherwise({ redirectTo: '/404' });
 })
 .controller("homeController",function(){
 	this.homePageWelcome = "Welcome to home";
 })
-.controller("courcesController",function(){
-	this.coursesPageList = "C++,VB.Net,PHP,Java,Angular";
+.controller("courcesController",function($scope){
+	$scope.coursesPageList = "C++,VB.Net,PHP,Java,Angular";
 })
-.controller("studentsController",function($scope){
-	$scope.studentsPageName = "Mike,Jackson, Jamie,Marry";
+.controller("studentsController",function($http,$route,$scope,$rootScope,$log,$location,$routeParams){
+
+	$scope.$on("$locationChangeStart",function(){
+		$log.debug("locationChangeStart fired");
+	});
+
+	$scope.$on("$routeChangeStart",function(){
+		$log.debug("routeChangeStart fired");
+	});
+
+	$scope.$on("$locationChangeSuccess",function(){
+		$log.debug("locationChangeSuccess fired");
+	});
+
+	$scope.$on("$routeChangeSuccess",function(){
+		$log.debug("routeChangeSuccess fired");
+	});
+
+	$scope.$on("$locationChangeStart",function(event,next,current){
+		if (!confirm("Leave this page to " + next)) { event.preventDefault();}
+	});
+
+	var vm = this;
+	vm.reloadData = function(){
+		$route.reload();
+	};
+
+	vm.studentsSearch = function(){
+		$location.url("/studentsSearch/" + this.studentName);
+	};
+
+	$http.get(sqlServerJsonObjStudents)
+	.then(function (response) {
+		vm.students = response.data;
+	});
+
+	this.studentsPageName = "Mike,Jackson, Jamie,Marry ";	
+})
+.controller("studentsSearchController",function($scope,$routeParams){
+	$scope.searchName = $routeParams.name;
 })
 .controller("studentsDetailController",function($scope,$routeParams){
-	$scope.student = {id: $routeParams.id, name:"Static Name Mike"};
+	$scope.student = {id: $routeParams.id, name: $routeParams.name};
 });
 
 
@@ -215,3 +261,15 @@ myApp
 .controller('level3',function(){
 	this.name = "level 3"
 });
+
+//controller for scope vs rootScope
+myApp
+.controller('redColorController',function($scope,$rootScope){
+	$scope.redColor = "Scope Red Color";
+	$rootScope.shareColor = "Yellow - Definied in red controller, share globally";
+})
+.controller('greenColorController',function($scope){
+	$scope.greenColor = "Scope green Color";
+})
+;
+

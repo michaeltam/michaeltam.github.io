@@ -1,8 +1,10 @@
-{{ studentsPageName }}students
-
+<input type="text" ng-model="studentsCtr.studentName"/><br />
+<button ng-click="studentsCtr.studentsSearch()">Search</button><br />
 
 <ul>
-<li><a href="./#/students/1"/>student 1</a></li>
-<li><a href="./#/students/2"/>student 2</a></li>
-<li><a href="./#/students/3"/>student 3</a></li>
-<ul>
+	<li ng-repeat="student in studentsCtr.students">
+		<a href="./#/students/{{student.id}}/{{student.name}}"/>{{ student.name }}</a>
+	</li>
+</ul>
+
+<button ng-click="studentsCtr.reloadData()" >reload</button>
