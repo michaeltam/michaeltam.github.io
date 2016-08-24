@@ -1,5 +1,5 @@
-sqlServerJsonObj = '/serverjobj.html';
-sqlServerJsonObjStudents = '/serverjobjstudents.html';
+sqlServerJsonObj = '/github/michaeltam.github.io/angular/serverjobj.html';
+sqlServerJsonObjStudents = '/github/michaeltam.github.io/angular/serverjobjstudents.html';
 
 /// <reference path="angular.min.js" />
 var myApp = angular
@@ -185,7 +185,15 @@ myApp.config(function($routeProvider){
 		})
 		.when("/students",{
 			templateUrl: "./templates/students.html",
-			controller: "studentsController as studentsCtr"
+			controller: "studentsController as studentsCtr",
+			resolve: { //route will not be loaded until this data fetch request is finished.
+					studentsFromResloveProperty : function($http){
+						return $http.get(sqlServerJsonObjStudents)
+						.then(function (response) {
+							return response.data;
+						})
+					}
+			}
 		})
 		.when("/students/:id/:name?",{ //name parameter is optional
 			templateUrl: "./templates/studentDetail.html",
@@ -204,7 +212,7 @@ myApp.config(function($routeProvider){
 .controller("courcesController",function($scope){
 	$scope.coursesPageList = "C++,VB.Net,PHP,Java,Angular";
 })
-.controller("studentsController",function($http,$route,$scope,$rootScope,$log,$location,$routeParams){
+.controller("studentsController",function($http,$route,$scope,$rootScope,$log,$location,$routeParams, studentsFromResloveProperty){
 
 	$scope.$on("$locationChangeStart",function(){
 		$log.debug("locationChangeStart fired");
@@ -235,10 +243,7 @@ myApp.config(function($routeProvider){
 		$location.url("/studentsSearch/" + this.studentName);
 	};
 
-	$http.get(sqlServerJsonObjStudents)
-	.then(function (response) {
-		vm.students = response.data;
-	});
+	this.students = studentsFromResloveProperty;
 
 	this.studentsPageName = "Mike,Jackson, Jamie,Marry ";	
 })
