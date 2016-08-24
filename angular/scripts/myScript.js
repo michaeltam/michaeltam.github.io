@@ -1,5 +1,5 @@
-sqlServerJsonObj = '/github/michaeltam.github.io/angular/serverjobj.html';
-sqlServerJsonObjStudents = '/github/michaeltam.github.io/angular/serverjobjstudents.html';
+sqlServerJsonObj = '/serverjobj.html';
+sqlServerJsonObjStudents = '/serverjobjstudents.html';
 
 /// <reference path="angular.min.js" />
 var myApp = angular
