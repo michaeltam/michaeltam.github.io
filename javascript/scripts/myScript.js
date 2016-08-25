@@ -1,280 +1,169 @@
-sqlServerJsonObj = '/github/michaeltam.github.io/angular/serverjobj.html';
-sqlServerJsonObjStudents = '/github/michaeltam.github.io/angular/serverjobjstudents.html';
+$(document).ready(function(){
 
-/// <reference path="angular.min.js" />
-var myApp = angular
-			.module("myModule",["ngRoute"])
-			.controller("myController",function($scope, $http, $log, stringService, $location, $anchorScroll){
-
-				$http.get(sqlServerJsonObj)
-				.then(function (response) {
-					$scope.sqlServerJsonObj = response.data;
-					$log.info(response); //same as console.log
-				});
-
-				var location = {
-					name : "United State of America",
-					capital : "Washington, D.C.",
-					flag :  "./images/usa_flag.jpg"
-				};
-				//Custom filter see line 134
-
-
-				var employees = [
-					{ firstName: "Apple",  lastName: "Hasting", birth: new Date("November 23 , 1980"), gender: "Male",genderSub: 1, salary: 5500.36 },
-					{ firstName: "Bennay", lastName: "Ceaser", birth: new Date("May 30 , 1975"), gender: "Male",genderSub: 1, salary: 250.256 },
-					{ firstName: "Cathay", lastName: "Edmond", birth: new Date("July 5 , 1989"), gender: "Female",genderSub: 2, salary: 331324500.44 },
-					{ firstName: "Denny", lastName: "Lowis", birth: new Date("Jun 14 , 1991"), gender: "Male",genderSub: 3 , salary: 453010.253 },
-					{ firstName: "Edmond", lastName: "King", birth: new Date("Feb 14 , 1955"), gender: "Female",genderSub: 2, salary: 5233010.953 },
-				];
-
-				var countries = [
-					{
-						name: "UK",
-						cities: [
-							{ name: "London" },
-							{ name: "Manchester" },
-							{ name: "Birmingham" }
-						]
-					},
-
-					{
-						name: "US",
-						cities: [
-							{ name: "Los Angeles" },
-							{ name: "Chicago" },
-							{ name: "Houston" }
-						]
-					},
-
-					{
-						name: "India",
-						cities: [
-							{ name: "Hyderabad" },
-							{ name: "Chenai" },
-							{ name: "Mambai" }
-						]
-					},
-				];
-
-				var technologies = [
-					{ name: "C#", likes: 0 , dislikes: 0 },
-					{ name: "ASP.NET", likes: 0 , dislikes: 0 },
-					{ name: "SQL Server", likes: 0 , dislikes: 0 },
-					{ name: "AngularJS", likes: 0 , dislikes: 0 },
-					{ name: "PHP", likes: 0 , dislikes: 0 }
-				];
-
-				$scope.location = location;
-				$scope.employees = employees;
-				$scope.countries = countries;
-				$scope.technologies = technologies;
-				$scope.sortColumn = "name";
-				$scope.reverseSort = false;
-
-				$scope.incrementLikes = function(technology){
-					technology.likes++;
+	var arrayObj = {
+		displayArrayElement : function (element){
+		 	//var div = document.getElementById("content");
+		 	content.innerHTML += element ?  (element.toString() + "<br />") : "<br />"; //id doesn't support on firefox
+		},
+		displayTitle : function (string){
+		 	//var div = document.getElementById("content");
+		 	this.newLine();
+		 	content.innerHTML += ("<h2>" + string + "</h2>" + "<br />") ; //id doesn't support on firefox
+		},
+		newLine : function(){
+			this.displayArrayElement('------------------------------------------');
+			return this;
+		},
+		iterator : function(ary){
+				for (var i = 0;i<ary.length;i++){
+					this.displayArrayElement(ary[i]);
 				}
+		},
+		everyElement : function(score){
+			return isNaN(score); 
+		},
+		filterElement : function(score){
+			return !isNaN(score);
+		}
+	};
 
-				$scope.incrementDislikes = function(technology){
-					technology.dislikes++;
-				}
 
-				$scope.sortData = function(column){
-					$scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort : false;
-					$scope.sortColumn = column;
+var Car = function Car (name,color){
+	this.name = name;
+	this.color = color;
+	this.detail = function(){
+		arrayObj.displayArrayElement("Name: " + this.name + " color: "+ this.color +  " Type: " + this.locks) ;
+	},
+	this.checkProperty = function(property){
+		arrayObj.displayArrayElement( "Has own '" + property + "' property? " + this.hasOwnProperty(property) );
+	}
+};
 
-				}
+Car.prototype.locks = "automatic";
 
-				$scope.getSortClass = function(column){
-					if ($scope.sortColumn == column){
-						return $scope.reverseSort ? 'arrow_down' : 'arrow_up';
-					}
+var work_car = new Car("Toyota","red");
+work_car.detail();
+work_car.checkProperty("locks");
 
-					return '';
 
-				}
+arrayObj.displayArrayElement( "<br />For in to iterate obj property" );
+for (var pro_name in work_car){
+	arrayObj.displayArrayElement( "Property Name: " + pro_name + " --------  Property Value: " + work_car[pro_name]);
+}
 
-				$scope.rowLimit = 3;		
+arrayObj.displayArrayElement("----");
+var personal_car = new Car("Honda","blue");
+personal_car.locks = "manual";
+personal_car.detail();
+personal_car.checkProperty("locks");
+
+arrayObj.displayArrayElement( "<br />For in to iterate obj property" );
+for (var pro_name in personal_car){
+	arrayObj.displayArrayElement( "Property Name: " + pro_name + " --------  Property Value: " + personal_car[pro_name]);
+}
+
+//Navigator Object
+
+arrayObj.displayTitle("Navigator Obj");
+arrayObj.displayArrayElement("appname:" + navigator.appName);
+arrayObj.displayArrayElement("appCodeName:" + navigator.appCodeName);
+arrayObj.displayArrayElement("platform:" + navigator.platform);
+arrayObj.displayArrayElement("userAgent:" + window.navigator.userAgent);
+arrayObj.displayArrayElement("see console for rest of the properties");
+console.log(navigator);
+
+//History Obj
+
+arrayObj.displayTitle("History Obj");
+arrayObj.displayArrayElement("lengh-num of pages in session history of current window. back(),forward(),go()");
+arrayObj.displayArrayElement("see console for rest of the properties");
+console.log(history);
+// Array --  
+
+
 	
-				var animal = [
-					{ name: 'piggy', age: 11 },
-					{ name: 'doggy', age: 23 },
-					{ name: 'monkey', age: 35 },
-					{ name: 'kitty', age: 46 }
-				]
+	arrayObj.newLine();
+	var students = ["s1","s2","s3","mike","s1","s2","s3"];
+	students = new Array("s1","s2","s3","mike","s3","s1","s2","s2","s2","s3");
+	var students_classA = ["3","4","64","3"];
 
-				$scope.animal = animal;
-				$scope.animalSortColumn = 'age';
-				$scope.animalreverseSort = false;
+	arrayObj.displayArrayElement("for loop");
+	arrayObj.displayArrayElement(students);
 
-				$scope.animalSortData = function(column){
-					$scope.animalreverseSort = $scope.animalSortColumn = column ? !$scope.animalreverseSort : false;
-					$scope.animalSortColumn = column;
-				}
+	arrayObj.displayArrayElement();
+	
+	arrayObj.displayArrayElement("array join , separate by comma");
+	
+	arrayObj.displayArrayElement(students.join(", "));
 
-				$scope.getAnimalSortClass = function(column){
-					if ($scope.animalSortColumn == column) { 
-						return $scope.animalreverseSort ? 'arrow_up' : 'arrow_down';
-					}
-					return '';
-				};
+	arrayObj.newLine().displayArrayElement("pop: " + students.pop());
+	arrayObj.displayArrayElement(students);
 
-				$scope.employeeSearch = function(item){
-					if ($scope.searchEmployee2 == undefined || $scope.searchEmployee2 == '') { return true; }
-					else {
-						if ( 
-							item.firstName.toLowerCase().indexOf($scope.searchEmployee2.toLowerCase()) != -1 ||
-							item.lastName.toLowerCase().indexOf($scope.searchEmployee2.toLowerCase()) != -1
-							) {
-							return true;
-						}
-						
-						/*if ( item.gender.indexOf($scope.searchEmployee2) != -1 ) return true;*/
+	arrayObj.newLine().displayArrayElement("push: " + students.push("mikey"));
+	arrayObj.displayArrayElement(students);
 
-					} 
-					
-					return false;
-				};
+	arrayObj.newLine().displayArrayElement("shift: " + students.shift());
+	arrayObj.displayArrayElement(students);	
 
-				$scope.employee_table_view = './view/employee_table.html';
-				$scope.employee_list_view = './view/employee_list.html';
-				$scope.employeeView = $scope.employee_table_view;
+	arrayObj.newLine().displayArrayElement("unshift: " + students.unshift("mikey1"));
+	arrayObj.displayArrayElement(students);
 
-				$scope.strUpdate = function(input){
-					$scope.output = stringService.spaceoutCapitalizedString(input);
-				};
 
-				$scope.scrollTo = function(scrollLocation){
-					// scroll to specific hash when hash is updated
-					$location.hash(scrollLocation); //append info to address bar
-					$anchorScroll(); //read the hash and scroll to the specified location
-					// $anchorScroll.yoffset = 230;
-				};
+	arrayObj.newLine().displayArrayElement("reverse: " + students.reverse());
+	arrayObj.displayArrayElement(students);
 
-				$scope.schollToFieldset = function(scrollLocation){
-					$location.hash(scrollLocation); //append info to address bar
-					$anchorScroll(); //read the hash and scroll to the specified location
-					// $anchorScroll.yoffset = 30;
-				};
 
-			});
+	arrayObj.newLine().displayArrayElement("sort: " + students.sort());
+	arrayObj.displayArrayElement(students);
 
-//routing
-myApp.config(function($routeProvider){
-	$routeProvider.caseInsensitiveMatch = true;
+	arrayObj.newLine().displayArrayElement("concate: " + students.concat(students_classA));
+	arrayObj.displayArrayElement(students);
+	
+	arrayObj.newLine().displayArrayElement("slice: 2,4 ---  " + students.slice(2,4));
+	arrayObj.displayArrayElement(students);
 
-	$routeProvider
-		.when("/",{
-			templateUrl: "./templates/home.html"
-		})
-		.when("/404",{
-			templateUrl: "./templates/404.html"
-		})
-		.when("/home",{
-			templateUrl: "./templates/home.html",
-			controller: "homeController as homeCtr"
-		})
-		.when("/courses",{
-			templateUrl: "./templates/courses.html",
-			controller: "courcesController",
-			controllerAs: "courseCtr"
-		})
-		.when("/schedule",{
-			template: "<h4>Inline Template</h4>",
-		})
-		.when("/students",{
-			templateUrl: "./templates/students.html",
-			controller: "studentsController as studentsCtr",
-			resolve: { //route will not be loaded until this data fetch request is finished.
-					studentsFromResloveProperty : function($http){
-						return $http.get(sqlServerJsonObjStudents)
-						.then(function (response) {
-							return response.data;
-						})
-					}
-			}
-		})
-		.when("/students/:id/:name?",{ //name parameter is optional
-			templateUrl: "./templates/studentDetail.html",
-			controller: "studentsDetailController",
-			caseInsensitiveMatch: true
-		})
-		.when("/studentsSearch/:name?",{
-			templateUrl: "./templates/studentsSearch.html",
-			controller: "studentsSearchController"
-		})
-		.otherwise({ redirectTo: '/404' });
-})
-.controller("homeController",function(){
-	this.homePageWelcome = "Welcome to home";
-})
-.controller("courcesController",function($scope){
-	$scope.coursesPageList = "C++,VB.Net,PHP,Java,Angular";
-})
-.controller("studentsController",function($http,$route,$scope,$rootScope,$log,$location,$routeParams, studentsFromResloveProperty){
+	arrayObj.newLine().displayArrayElement("splice: 2,1 s7,s8,4,766 array --- " + students.splice(2,1,"s7","s8",4,766));
+	arrayObj.displayArrayElement(students);
 
-	$scope.$on("$locationChangeStart",function(){
-		$log.debug("locationChangeStart fired");
+	arrayObj.newLine().displayArrayElement("indexOf: 's2',--- " + students.indexOf("s2"));
+	arrayObj.displayArrayElement(students);	
+
+	arrayObj.newLine().displayArrayElement("lastIndexOf: 's2',--- " + students.lastIndexOf("s2"));
+	arrayObj.displayArrayElement(students);	
+
+	arrayObj.newLine().displayArrayElement("every is not digits:   " + students.every(arrayObj.everyElement));
+	arrayObj.displayArrayElement(students);	
+
+	arrayObj.newLine().displayArrayElement("filter only show digits:   " + students.filter(arrayObj.filterElement));
+	arrayObj.displayArrayElement(students);	
+
+	arrayObj.newLine().displayArrayElement("For each");
+	students.forEach(function(v,i){
+		arrayObj.displayArrayElement(("i: "+i+" -- v: "+v ));
 	});
 
-	$scope.$on("$routeChangeStart",function(){
-		$log.debug("routeChangeStart fired");
+	var _temp = [{"a":"d"},{"b":"gg"}];
+
+		arrayObj.newLine().displayArrayElement("For each");
+	_temp.forEach(function(v,i){
+		arrayObj.displayArrayElement(("key: "+Object.keys(v)+" -- value: "+ v[Object.keys(v)] ));
 	});
+	arrayObj.newLine();
 
-	$scope.$on("$locationChangeSuccess",function(){
-		$log.debug("locationChangeSuccess fired");
+	var numArray = [1,3,6,9,8,"a",1,"b",2,4,5];
+	arrayObj.displayArrayElement("Ori Array   " + numArray);
+	numArray = numArray.map(function(num){
+		return num + 2;
 	});
+	arrayObj.displayArrayElement("New Array   " + numArray);
+	arrayObj.displayArrayElement("Some-any num >= 11    " + numArray.some(function(num){ return num >= 11 }));
 
-	$scope.$on("$routeChangeSuccess",function(){
-		$log.debug("routeChangeSuccess fired");
-	});
 
-	$scope.$on("$locationChangeStart",function(event,next,current){
-		if (!confirm("Leave this page to " + next)) { event.preventDefault();}
-	});
+	// arrayObj.newLine().displayArrayElement("remove last string element , sum of all elements" + numArray.pop());
+	arrayObj.newLine().displayArrayElement("Ori  --   " + numArray);
+	arrayObj.displayArrayElement("add all num from left " + numArray.reduce(function(total, num){ return total += num }));
+	arrayObj.displayArrayElement("add all num from left " + numArray.reduceRight(function(total, num){ return total += num }));
 
-	var vm = this;
-	vm.reloadData = function(){
-		$route.reload();
-	};
-
-	vm.studentsSearch = function(){
-		$location.url("/studentsSearch/" + this.studentName);
-	};
-
-	this.students = studentsFromResloveProperty;
-
-	this.studentsPageName = "Mike,Jackson, Jamie,Marry ";	
-})
-.controller("studentsSearchController",function($scope,$routeParams){
-	$scope.searchName = $routeParams.name;
-})
-.controller("studentsDetailController",function($scope,$routeParams){
-	$scope.student = {id: $routeParams.id, name: $routeParams.name};
 });
 
-
-//controller as syntax
-myApp
-.controller('level1',function(){
-	this.name = "level 1"
-})
-.controller('level2',function(){
-	this.name = "level 2"
-})
-.controller('level3',function(){
-	this.name = "level 3"
-});
-
-//controller for scope vs rootScope
-myApp
-.controller('redColorController',function($scope,$rootScope){
-	$scope.redColor = "Scope Red Color";
-	$rootScope.shareColor = "Yellow - Definied in red controller, share globally";
-})
-.controller('greenColorController',function($scope){
-	$scope.greenColor = "Scope green Color";
-})
-;
 

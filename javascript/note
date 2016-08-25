@@ -1,0 +1,8 @@
+Prototypes:
+
+Every funxrion in JA is known as prototype property., which is an object that contains the properties and methoes that are always avaliable for each instance of an object.
+
+Navigator Object:
+
+This gives you access to various properties of the viewer's browerses, such as name, version. It's part of windows object, which means you can access its properties using window.navigator.property.
+Sames as alert = window.alert("Hello World!");
