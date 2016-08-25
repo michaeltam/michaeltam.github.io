@@ -78,9 +78,9 @@ arrayObj.displayTitle("History Obj");
 arrayObj.displayArrayElement("lengh-num of pages in session history of current window. back(),forward(),go()");
 arrayObj.displayArrayElement("see console for rest of the properties");
 console.log(history);
+
+
 // Array --  
-
-
 	
 	arrayObj.newLine();
 	var students = ["s1","s2","s3","mike","s1","s2","s3"];
