@@ -1,0 +1,50 @@
+Prototypes:
+
+Every funxrion in JA is known as prototype property., which is an object that contains the properties and methoes that are always avaliable for each instance of an object.
+
+--
+
+Navigator Object:
+
+This gives you access to various properties of the viewer's browerses, such as name, version. It's part of windows object, which means you can access its properties using window.navigator.property.
+Sames as alert = window.alert("Hello World!");
+
+--
+
+History Object:
+
+The hisorty object, which is also part of the window object, provides information on the browser history of the current window.
+
+--
+
+DOM - Document Object Model
+Document object is an object that is created by the browser or each new HTML page(document) that is viewed.
+
+Dom allows JS to access the structure of the document in the browser. Each document is mad up of structured nodes(example body, elements in body would be child nodes od the body element)
+
+Figure 9-1
+<body>
+<h1>My Page</h1>
+<image src="myimage.jpg" alt="my pic">
+</body>
+
+9-1 
+Body is a node
+h1 and image elements are both child nodes of the body elements. Each element also has its own nodes.
+h1 - text node
+img = 2 attribute nodes. 
+
+--
+
+Collection:
+
+A number of the properties(anchor,forms, images) return an array that holds a collection of element or values found in the doc. Can be access liek an array using index. index[0] = first
+
+-- 
+
+Property of the Doc Obj
+
+anchors - returns an array of all named anchors in the doc.
+form - return array of all the form elements in the doc
+...... more property avaliable
+

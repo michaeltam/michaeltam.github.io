@@ -1,43 +1,173 @@
+window.onload = function(){
+	header.innerHTML = "Header Changed by window.onload - I'm done loading.<br />";
+	header.innerHTML += "use onbeforeunload if window.onunload doesn't work properly";
+};
+
 $(document).ready(function(){
 
-	var arrayObj = {
-		displayArrayElement : function (element){
-		 	//var div = document.getElementById("content");
-		 	content.innerHTML += element ?  (element.toString() + "<br />") : "<br />"; //id doesn't support on firefox
-		},
-		displayTitle : function (string){
-		 	//var div = document.getElementById("content");
-		 	this.newLine();
-		 	content.innerHTML += ("<h2>" + string + "</h2>" + "<br />") ; //id doesn't support on firefox
-		},
-		newLine : function(){
-			this.displayArrayElement('------------------------------------------');
-			return this;
-		},
-		iterator : function(ary){
-				for (var i = 0;i<ary.length;i++){
-					this.displayArrayElement(ary[i]);
-				}
-		},
-		everyElement : function(score){
-			return isNaN(score); 
-		},
-		filterElement : function(score){
-			return !isNaN(score);
-		}
-	};
+var outputObj = {
+	displayElement : function (element){
+	 	//var div = document.getElementById("content");
+	 	
+	 	content.innerHTML += element ?  (element.toString() + "<br />") : "<br />"; //id doesn't support on firefox
+	},
+	displayTitle : function (string){
+	 	//var div = document.getElementById("content");
+	 	this.newLine();
+	 	content.innerHTML += ("<h2>" + string + "</h2>" + "<br />") ; //id doesn't support on firefox
+	},
+	newLine : function(){
+		this.displayElement('<hr>');
+		return this;
+	},
+	iterator : function(ary){
+			for (var i = 0;i<ary.length;i++){
+				this.displayElement(ary[i]);
+			}
+	},
+	everyElement : function(score){
+		return isNaN(score); 
+	},
+	filterElement : function(score){
+		return !isNaN(score);
+	}
+};
 
+var mouseEventObj = {
+	mouseEventCounter : 0,
+
+	init: function(setting){
+		this.eventList = setting.eventList;
+		this.initialize();
+		this.setEventListener();
+		this.finanlize();
+	},
+	_setAttribute : function(element){
+		element.setAttribute("style","width:50px;background-color: #D6CECE;");
+	},
+	initialize: function(){
+		this.mouseParentDiv = document.createElement("div");
+		this._setAttribute(this.mouseParentDiv);
+		this.mouseChildDiv = document.createElement("div");
+		this._setAttribute(this.mouseChildDiv);
+		this.mouseParagraph = document.createElement("p");
+		this.mouseText = document.createTextNode("Mouse Event Div");
+	},
+	setEventListener : function(){
+		 if (this.eventList.onmousedown) { 
+		 	this.mouseParentDiv.onmousedown = function(){ console.log("Parent onmousedown: " +  mouseEventObj.mouseEventCounter++); }; 
+		 	this.mouseChildDiv.onmousedown = function(){ console.log("Child onmousedown: " +  mouseEventObj.mouseEventCounter++); };
+		 } 
+		
+		if (this.eventList.onmouseenter) { 
+			this.mouseParentDiv.onmouseenter = function(){ console.log("Parent onmouseenter: " +  mouseEventObj.mouseEventCounter++); };
+			this.mouseChildDiv.onmouseenter = function(){ console.log("Child onmouseenter: " +  mouseEventObj.mouseEventCounter++); };
+		}
+
+		if (this.eventList.onmouseleave) { 
+			this.mouseParentDiv.onmouseleave = function(){ console.log("Parent onmouseleave: " +  mouseEventObj.mouseEventCounter++); };
+			this.mouseChildDiv.onmouseleave = function(){ console.log("Child onmouseleave: " +  mouseEventObj.mouseEventCounter++); };
+		}
+
+		if (this.eventList.onmousemove) { 
+			this.mouseParentDiv.onmousemove = function(){ console.log("Parent onmousemove: " +  mouseEventObj.mouseEventCounter++); };
+			this.mouseChildDiv.onmousemove = function(){ console.log("Child onmousemove: " +  mouseEventObj.mouseEventCounter++); };
+		}
+
+		if (this.eventList.onmouseout) { 
+			this.mouseParentDiv.onmouseout = function(){ console.log("Parent onmouseout: " +  mouseEventObj.mouseEventCounter++); };
+			this.mouseChildDiv.onmouseout = function(){ console.log("Child onmouseout: " +  mouseEventObj.mouseEventCounter++); };
+		}
+
+		if (this.eventList.onmouseover) { 
+			this.mouseParentDiv.onmouseover = function(){ console.log("Parent onmouseover: " +  mouseEventObj.mouseEventCounter++); };
+			this.mouseChildDiv.onmouseover = function(){ console.log("Child onmouseover: " +  mouseEventObj.mouseEventCounter++); };	
+		}
+
+		if (this.eventList.onmouseup) { 
+			this.mouseParentDiv.onmouseup = function(){ console.log("Parent onmouseup: " +  mouseEventObj.mouseEventCounter++); };
+			this.mouseChildDiv.onmouseup = function(){ console.log("Child onmouseup: " +  mouseEventObj.mouseEventCounter++); };
+		}
+
+		if (this.eventList.onmousewheel) {
+			this.mouseParentDiv.onmousewheel = function(){ console.log("Parent onmousewheel: " +  mouseEventObj.mouseEventCounter++); };
+			this.mouseChildDiv.onmousewheel = function(){ console.log("Child onmousewheel: " +  mouseEventObj.mouseEventCounter++); };
+		}
+		
+
+	},
+	finanlize : function(){
+		this.mouseParagraph.appendChild(this.mouseText);	
+		this.mouseChildDiv.appendChild(this.mouseParagraph);
+		this.mouseParentDiv.appendChild(this.mouseChildDiv);
+		mouseEvent.appendChild(this.mouseParentDiv);
+	}
+}
+
+mouseEventObj.init(
+	{
+		"eventList" : {
+				"onmousedown"	:	true,
+				"onmouseenter"	: 	true,
+				"onmouseleave"	: 	false,
+				"onmousemove"	: 	false,
+				"onmouseout"	: 	false,
+				"onmouseover"	: 	false,
+				"onmouseup"		: 	false,
+				"onmousewheel"	: 	false
+			}
+	}
+);
+
+
+//Mouse Events
+
+
+contentDiv = document.getElementById("content").attributes;
+outputObj.displayTitle("The properties of the Document Object");
+		allImg = document.images;
+		outputObj.displayElement(allImg);
+		outputObj.displayElement("see log for the array");
+
+outputObj.displayElement();
+//outputObj.displayElement("cookie");
+// document.cookie = "mike visted 114";
+outputObj.displayElement(document.cookie);
+
+// Dom Node property
+outputObj.displayTitle("DOM Node Properties");
+outputObj.displayElement ("attributes, className,firstChild,style, dir,id, iscontentEditable");
+outputObj.displayElement ( "id: " + contentDiv[1].name + " --- value :"  + contentDiv[0].value);
+
+// Dom Node method
+var section1Div = document.getElementById("section1");
+console.log(section1Div);
+outputObj.displayTitle("DOM Node Method");
+outputObj.displayElement ("addEvenListener(), appendChild(), click, hasAttribute(), replaceChild, setAttribute");
+section1Div.appendChild( document.createTextNode(" - New Text Node appened -") );
+
+new_div = document.createElement("div");
+new_text = document.createTextNode("More....");
+new_div.appendChild(new_text);
+new_div.id = "moreId"
+new_div.title = "more";
+section1Div.appendChild(new_div);
+section1Div.removeChild(new_div);
+
+// Own Object Demo
 
 var Car = function Car (name,color){
 	this.name = name;
 	this.color = color;
 	this.detail = function(){
-		arrayObj.displayArrayElement("Name: " + this.name + " color: "+ this.color +  " Type: " + this.locks) ;
+		outputObj.displayElement("Name: " + this.name + " color: "+ this.color +  " Type: " + this.locks) ;
 	},
 	this.checkProperty = function(property){
-		arrayObj.displayArrayElement( "Has own '" + property + "' property? " + this.hasOwnProperty(property) );
+		outputObj.displayElement( "Has own '" + property + "' property? " + this.hasOwnProperty(property) );
 	}
 };
+
+outputObj.displayTitle("My Object Example");
 
 Car.prototype.locks = "automatic";
 
@@ -46,123 +176,124 @@ work_car.detail();
 work_car.checkProperty("locks");
 
 
-arrayObj.displayArrayElement( "<br />For in to iterate obj property" );
+outputObj.displayElement( "For in to iterate obj property" );
 for (var pro_name in work_car){
-	arrayObj.displayArrayElement( "Property Name: " + pro_name + " --------  Property Value: " + work_car[pro_name]);
+	outputObj.displayElement( "Property Name: " + pro_name + " --------  Property Value: " + work_car[pro_name]);
 }
 
-arrayObj.displayArrayElement("----");
+outputObj.displayElement("----");
+
 var personal_car = new Car("Honda","blue");
 personal_car.locks = "manual";
 personal_car.detail();
 personal_car.checkProperty("locks");
 
-arrayObj.displayArrayElement( "<br />For in to iterate obj property" );
+outputObj.displayElement( "<br />For in to iterate obj property" );
 for (var pro_name in personal_car){
-	arrayObj.displayArrayElement( "Property Name: " + pro_name + " --------  Property Value: " + personal_car[pro_name]);
+	outputObj.displayElement( "Property Name: " + pro_name + " --------  Property Value: " + personal_car[pro_name]);
 }
 
 //Navigator Object
 
-arrayObj.displayTitle("Navigator Obj");
-arrayObj.displayArrayElement("appname:" + navigator.appName);
-arrayObj.displayArrayElement("appCodeName:" + navigator.appCodeName);
-arrayObj.displayArrayElement("platform:" + navigator.platform);
-arrayObj.displayArrayElement("userAgent:" + window.navigator.userAgent);
-arrayObj.displayArrayElement("see console for rest of the properties");
+outputObj.displayTitle("Navigator Obj");
+outputObj.displayElement("appname:" + navigator.appName);
+outputObj.displayElement("appCodeName:" + navigator.appCodeName);
+outputObj.displayElement("platform:" + navigator.platform);
+outputObj.displayElement("userAgent:" + window.navigator.userAgent);
+outputObj.displayElement("see console for rest of the properties");
 console.log(navigator);
 
 //History Obj
 
-arrayObj.displayTitle("History Obj");
-arrayObj.displayArrayElement("lengh-num of pages in session history of current window. back(),forward(),go()");
-arrayObj.displayArrayElement("see console for rest of the properties");
+outputObj.displayTitle("History Obj");
+outputObj.displayElement("lengh-num of pages in session history of current window. back(),forward(),go()");
+outputObj.displayElement("see console for rest of the properties");
 console.log(history);
 
 
 // Array --  
 	
-	arrayObj.newLine();
+	outputObj.newLine();
 	var students = ["s1","s2","s3","mike","s1","s2","s3"];
 	students = new Array("s1","s2","s3","mike","s3","s1","s2","s2","s2","s3");
 	var students_classA = ["3","4","64","3"];
 
-	arrayObj.displayArrayElement("for loop");
-	arrayObj.displayArrayElement(students);
+	outputObj.displayElement("for loop");
+	outputObj.displayElement(students);
 
-	arrayObj.displayArrayElement();
+	outputObj.displayElement();
 	
-	arrayObj.displayArrayElement("array join , separate by comma");
+	outputObj.displayElement("array join , separate by comma");
 	
-	arrayObj.displayArrayElement(students.join(", "));
+	outputObj.displayElement(students.join(", "));
 
-	arrayObj.newLine().displayArrayElement("pop: " + students.pop());
-	arrayObj.displayArrayElement(students);
+	outputObj.newLine().displayElement("pop: " + students.pop());
+	outputObj.displayElement(students);
 
-	arrayObj.newLine().displayArrayElement("push: " + students.push("mikey"));
-	arrayObj.displayArrayElement(students);
+	outputObj.newLine().displayElement("push: " + students.push("mikey"));
+	outputObj.displayElement(students);
 
-	arrayObj.newLine().displayArrayElement("shift: " + students.shift());
-	arrayObj.displayArrayElement(students);	
+	outputObj.newLine().displayElement("shift: " + students.shift());
+	outputObj.displayElement(students);	
 
-	arrayObj.newLine().displayArrayElement("unshift: " + students.unshift("mikey1"));
-	arrayObj.displayArrayElement(students);
-
-
-	arrayObj.newLine().displayArrayElement("reverse: " + students.reverse());
-	arrayObj.displayArrayElement(students);
+	outputObj.newLine().displayElement("unshift: " + students.unshift("mikey1"));
+	outputObj.displayElement(students);
 
 
-	arrayObj.newLine().displayArrayElement("sort: " + students.sort());
-	arrayObj.displayArrayElement(students);
+	outputObj.newLine().displayElement("reverse: " + students.reverse());
+	outputObj.displayElement(students);
 
-	arrayObj.newLine().displayArrayElement("concate: " + students.concat(students_classA));
-	arrayObj.displayArrayElement(students);
+
+	outputObj.newLine().displayElement("sort: " + students.sort());
+	outputObj.displayElement(students);
+
+	outputObj.newLine().displayElement("concate: " + students.concat(students_classA));
+	outputObj.displayElement(students);
 	
-	arrayObj.newLine().displayArrayElement("slice: 2,4 ---  " + students.slice(2,4));
-	arrayObj.displayArrayElement(students);
+	outputObj.newLine().displayElement("slice: 2,4 ---  " + students.slice(2,4));
+	outputObj.displayElement(students);
 
-	arrayObj.newLine().displayArrayElement("splice: 2,1 s7,s8,4,766 array --- " + students.splice(2,1,"s7","s8",4,766));
-	arrayObj.displayArrayElement(students);
+	outputObj.newLine().displayElement("splice: 2,1 s7,s8,4,766 array --- " + students.splice(2,1,"s7","s8",4,766));
+	outputObj.displayElement(students);
 
-	arrayObj.newLine().displayArrayElement("indexOf: 's2',--- " + students.indexOf("s2"));
-	arrayObj.displayArrayElement(students);	
+	outputObj.newLine().displayElement("indexOf: 's2',--- " + students.indexOf("s2"));
+	outputObj.displayElement(students);	
 
-	arrayObj.newLine().displayArrayElement("lastIndexOf: 's2',--- " + students.lastIndexOf("s2"));
-	arrayObj.displayArrayElement(students);	
+	outputObj.newLine().displayElement("lastIndexOf: 's2',--- " + students.lastIndexOf("s2"));
+	outputObj.displayElement(students);	
 
-	arrayObj.newLine().displayArrayElement("every is not digits:   " + students.every(arrayObj.everyElement));
-	arrayObj.displayArrayElement(students);	
+	outputObj.newLine().displayElement("every is not digits:   " + students.every(outputObj.everyElement));
+	outputObj.displayElement(students);	
 
-	arrayObj.newLine().displayArrayElement("filter only show digits:   " + students.filter(arrayObj.filterElement));
-	arrayObj.displayArrayElement(students);	
+	outputObj.newLine().displayElement("filter only show digits:   " + students.filter(outputObj.filterElement));
+	outputObj.displayElement(students);	
 
-	arrayObj.newLine().displayArrayElement("For each");
+	outputObj.newLine().displayElement("For each");
 	students.forEach(function(v,i){
-		arrayObj.displayArrayElement(("i: "+i+" -- v: "+v ));
+		outputObj.displayElement(("i: "+i+" -- v: "+v ));
 	});
 
 	var _temp = [{"a":"d"},{"b":"gg"}];
 
-		arrayObj.newLine().displayArrayElement("For each");
+		outputObj.newLine().displayElement("For each");
 	_temp.forEach(function(v,i){
-		arrayObj.displayArrayElement(("key: "+Object.keys(v)+" -- value: "+ v[Object.keys(v)] ));
+		outputObj.displayElement(("key: "+Object.keys(v)+" -- value: "+ v[Object.keys(v)] ));
 	});
-	arrayObj.newLine();
+	outputObj.newLine();
 
 	var numArray = [1,3,6,9,8,"a",1,"b",2,4,5];
-	arrayObj.displayArrayElement("Ori Array   " + numArray);
+	outputObj.displayElement("Ori Array   " + numArray);
 	numArray = numArray.map(function(num){
 		return num + 2;
 	});
-	arrayObj.displayArrayElement("New Array   " + numArray);
-	arrayObj.displayArrayElement("Some-any num >= 11    " + numArray.some(function(num){ return num >= 11 }));
+	outputObj.displayElement("New Array   " + numArray);
+	outputObj.displayElement("Some-any num >= 11    " + numArray.some(function(num){ return num >= 11 }));
 
 
-	// arrayObj.newLine().displayArrayElement("remove last string element , sum of all elements" + numArray.pop());
-	arrayObj.newLine().displayArrayElement("Ori  --   " + numArray);
-	arrayObj.displayArrayElement("add all num from left " + numArray.reduce(function(total, num){ return total += num }));
-	arrayObj.displayArrayElement("add all num from left " + numArray.reduceRight(function(total, num){ return total += num }));
+	// outputObj.newLine().displayElement("remove last string element , sum of all elements" + numArray.pop());
+	outputObj.newLine().displayElement("Ori  -- reduce function   " + numArray);
+	outputObj.displayElement("add all num from left " + numArray.reduce(function(total, num){ return total += num }));
+	outputObj.displayElement("add all num from left " + numArray.reduceRight(function(total, num){ return total += num }));
 
 });
 
