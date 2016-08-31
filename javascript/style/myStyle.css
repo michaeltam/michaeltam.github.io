@@ -2,3 +2,7 @@ body{ 100%; }
 h2{ margin: 0px; }
 #wrapper{  margin: 0 auto; }
 #content{ width: 500px;  }
+
+#event_listener #d1{ width: 150px; height: 150px; background-color: black; color:white;}
+#event_listener #d2{ width: 100px; height: 100px; background-color: gray;}
+#event_listener #d3{ width: 50px; height: 50px; background-color: silver;}

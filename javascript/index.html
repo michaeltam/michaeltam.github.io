@@ -17,9 +17,9 @@
 <div id="mouseEvent" >
 	<hr>
 	<h2> Mouse Event & Create Element, style </h2>
-	mousedown : child - parent<br />
-	mouseenter : parent - child<br />
-	mouseleave : child - parent<br />
+	mousedown : child - parent  	"view press the mouse button but before the click is complete(not release button)"<br /> 
+	mouseenter : parent - child		"viewer moves the mouse cursor over an element"<br />
+	mouseleave : child - parent		"<br />
 	mouselmove : child - parent<br />
 	mouselout : child - parent<br />
 	mouselover : child - parent<br />
@@ -27,6 +27,44 @@
 	mousewheel : not tested yet
 </div>
 
+
+<div id="focus_blur">
+	<hr>
+	<h2>Focus & Blur</h2>
+	1) keydown, 2)keypress, 3) keyup . The events occurs in this sequence<br />
+	keypress would not fire for all keys( like esc, shift, cap, )
+
+	<form>
+		<input id="focus_blur" type="text" placeholder="Focus & Blur"/>
+	</form>
+</div>
+
+<div id="event_listener">
+	<hr>
+	<h2>Event Listener</h2>
+	addEventListener addEventListener('event_type, function, true/false') Boolean =  capturing & bubbling Phrase.<br /> 
+	If capture is used, then the outermost elements's event occurs first and the innermost elements event will occur last.
+	<br />
+	attachEvent() only uses bubbling and this function is used in prior I.E 9<br />
+	event preventDefault(); prevent default action. in this case stop go to google<br />
+	I.E 9 prior use return Value property to false. ex...window.event.returnValue = false; do the same as preventDefault();<br />
+	<a id="preventDefaultA" href="http://www.google.com">to Google</a><br />
+	<div id="d1"> d1
+		<div id="d2"> d2
+			<div id="d3">d3</div>
+		</div>
+	</div>
+</div>
+
+<div id="windowObj">
+	<hr>
+	<h2>Window Object</h2>
+	<span id="timerSpan"></span><br />
+	<button id="timeIntervalStart">Start timer</button><button id="timeIntervalStop">Stop timer</button><br />
+	<span id="timerTimeoutSpan"></span><br />
+	<button id="timeTimeoutStart">Start timeout timer</button><button id="timeTimeoutStop">Stop timeout timer</button><br />
+	<button id="popWindow">Pop Up Window</button><button id="closePopWindow">Close Pop Up Window</button>
+</div>
 
 
 <div id="content" name="contentName" >

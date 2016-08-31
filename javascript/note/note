@@ -48,3 +48,61 @@ anchors - returns an array of all named anchors in the doc.
 form - return array of all the form elements in the doc
 ...... more property avaliable
 
+--
+
+What's an Even Handler?
+An even thnadler is a predinded JavasCript property of an object. Used to handle an event on a web page.
+
+--
+
+The Event Object
+an object named event is created, which stores information about the event.
+event, IE uses window.event which means DOM level 0 event handerl would use the following code:
+var e = event || window.event;
+
+property:
+bubbles - whether or not the event bubbles
+cancelable : default action of the event can be canceled?
+cancelBubble - Cancels event bubbling when set to false(I.E)
+currentTarget- the element that is currently handling the even
+defaultPrevented - whether preventDefault() has been called
+more....
+
+--
+
+Window: The Global Object
+Window object is created for each window that appears in the browser. Can be a frame set, or individual frame, a tab, or new window created with JS. windows obj contains document object(as well as other obj, such as history, navigator ...)It serves as the global object for JS in the Web browser. 
+
+Properties of the Window Obj:
+applicationCache
+closed
+console
+content
+defaultStatus
+document
+frameElement
+frames
+history
+location,
+navagator
+outerHeight
+screen
+status
+window
+....much more
+
+
+Methods of the Window Obj:
+addEventListener()
+alert()
+back()
+blur()
+close()
+confirm()
+resizeTo()
+scrollTo()
+print();
+
+The main browser window is often proteced from being moved, resized, closed, or otherwise manipulate for ssecurity reasons. Example, open a bad site while clsoing the main window. Many of the methods mentioned such as resizeTo don't do any;thin wwhen called in the main window or display a warnin to the view. Browsers allow you more control of pop-up window.
+
+Caution- some browser doesn't allow resizeTo or moveTo. some open in a new tab or in main browser rather tahn popup. 

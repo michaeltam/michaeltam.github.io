@@ -3,6 +3,9 @@ window.onload = function(){
 	header.innerHTML += "use onbeforeunload if window.onunload doesn't work properly";
 };
 
+window.name = "mike Page";
+window.console.log("Welcome to " + window.name);
+
 $(document).ready(function(){
 
 var outputObj = {
@@ -104,6 +107,7 @@ var mouseEventObj = {
 	}
 }
 
+//Mouse Events
 mouseEventObj.init(
 	{
 		"eventList" : {
@@ -119,10 +123,54 @@ mouseEventObj.init(
 	}
 );
 
+//Window Object
+var searchText = 'listener';
+var timerPCounter = 0;
+searchTextExist = window.find(searchText);
+windowObj.innerHTML += ("<br />'"+searchText+"' exists in current page? " + searchTextExist + "<br />" );
+counterP = null;
+timeIntervalStart.addEventListener("click",function(){ 
+				timerPCounter = 0;
+				counterP = setInterval( 
+							function(){ timerSpan.innerHTML = timerPCounter++; }, 1000 );  
+				},false);
+timeIntervalStop.addEventListener("click",function(){ clearInterval(counterP); timerSpan.innerHTML = null; },false);
 
-//Mouse Events
+timeoutAlert = null;
+timeTimeoutStart.addEventListener("click",function(){
+				timerTimeoutSpan.innerHTML = "You have 5 secs to stop the bomb. Click stop timout within 5 secs";
+				timeoutAlert = setTimeout(function(){alert("Bombed");},5000);
+},false);
+timeTimeoutStop.addEventListener("click",function(){ timerTimeoutSpan.innerHTML = null; clearTimeout(timeoutAlert); },false);
+var newwindow = null;
+popWindow.addEventListener("click",function(){ 
+	newwindow=window.open("http://www.google.com","mikeGoogle",'height=500,width=550,location=no');
+	if (window.focus) {newwindow.focus()}
+	return false;
+},false);  
+closePopWindow.addEventListener("click",function(e){ e.preventDefault(); newwindow.close(); },false);
 
+//Focus & Blue
+focus_blur.onfocus = function(){ console.log("focus text now"); }
+focus_blur.onblur = function(){ console.log("unfocus text now"); }
+focus_blur.onkeydown = function(e){ console.log("keydown") }
+focus_blur.onkeyup = function(){ console.log("keyup") }
+focus_blur.onkeypress = function(e){ var k = e.which || e.keyCode; console.log("keypress "+  k + " " + String.fromCharCode(k));  }
 
+//Event Listener
+function hightLight(e){this.style.backgroundColor='yellow'; alert(this.id); this.style.backgroundColor=''; }
+d1.addEventListener("click",hightLight,false );
+d2.addEventListener("click", hightLight, true);
+d3.addEventListener("click", hightLight, false);
+preventDefaultA.addEventListener("click", function(e){ console.log(this.id); e.preventDefault(); }, false);
+
+//Event Handler
+outputObj.displayTitle("Event Handler" );
+outputObj.displayElement ("DOM Level 0 event handler eg....onclick, onmouseover etc..<br />");
+outputObj.displayElement ("DOM Level 2 : addEventListener and attachEvent(). These offer the ability to attach multiple events to elements, example<br />");
+outputObj.displayElement ("my_div.onclick = function (){ firstclick! }, my_div.onclick = function (){ second lick! },. Second will override the first.<br />");
+
+//Attributes
 contentDiv = document.getElementById("content").attributes;
 outputObj.displayTitle("The properties of the Document Object");
 		allImg = document.images;
