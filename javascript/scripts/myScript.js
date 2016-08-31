@@ -142,13 +142,33 @@ timeTimeoutStart.addEventListener("click",function(){
 				timeoutAlert = setTimeout(function(){alert("Bombed");},5000);
 },false);
 timeTimeoutStop.addEventListener("click",function(){ timerTimeoutSpan.innerHTML = null; clearTimeout(timeoutAlert); },false);
-var newwindow = null;
+var newwindow;
+popWindowStatus.addEventListener("click",function(){
+	if(!newwindow){
+		popWindowStatusP.innerHTML = "Popup Window not open yet";
+	}else{
+		if(newwindow.closed){
+			popWindowStatusP.innerHTML = "Popup Window is closed";	
+		}else
+		{
+			popWindowStatusP.innerHTML = "Popup Window is still open";	
+		}
+	}
+},false);
 popWindow.addEventListener("click",function(){ 
-	newwindow=window.open("http://www.google.com","mikeGoogle",'height=500,width=550,location=no');
+	newwindow=window.open("./templates/storyH.html","mikeGoogle",'height=100,width=550,left=300');
+	newwindow.scrollTo(200,300);
 	if (window.focus) {newwindow.focus()}
 	return false;
 },false);  
+readMoreStory.addEventListener("mousedown",function(){ newwindow.scrollBy(0,10); },false);
 closePopWindow.addEventListener("click",function(e){ e.preventDefault(); newwindow.close(); },false);
+nextStory.addEventListener("click",function(){ 
+	newwindow=window.open("./templates/storyV.html","mikeGoogle",'height=500,width=550,location=no');
+	newwindow.resizeTo(700,100);
+	newwindow.moveTo(500,200); 
+},false);
+
 
 //Focus & Blue
 focus_blur.onfocus = function(){ console.log("focus text now"); }
