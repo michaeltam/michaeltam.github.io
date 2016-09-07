@@ -169,6 +169,85 @@ nextStory.addEventListener("click",function(){
 	newwindow.moveTo(500,200); 
 },false);
 
+//Date Object
+outputObj.displayTitle("Date Object");
+
+Clock = function(){
+	this.clock = "0:00:00";
+	this.timer;
+
+	this.getTime = function(){
+		var now = new Date();
+		var hour = now.getHours();
+		var min = now.getMinutes();
+		var sec = now.getSeconds();
+		var ap = hour < 12 ? "am" : "pm";
+		hour = ( hour < 12 ) ? hour : hour-12;
+		min = ( min < 10 ) ? "0"+min : min;
+		sec = ( sec < 10 ) ? "0"+sec : sec;
+		this.clock = hour+":"+min+":"+sec+" "+ap;
+	}
+	this.showTime = function(){ 
+		var clock = this;
+		this.getTime();
+		dateClock.innerHTML = this.clock;
+		this.timer = setTimeout(function(){ clock.showTime(); },1000);
+	};
+}
+
+var clock = new Clock();
+outputObj.displayElement (clock.showTime());
+
+now = new Date();
+past = new Date("November 5,1955");
+outputObj.displayElement (now);
+outputObj.displayElement (past);
+outputObj.displayElement("Day of the month = " +  now.getDate());
+outputObj.displayElement("Day of the week = " +  now.getDay());
+outputObj.displayElement("Time since 1970/1/1 = " +  now.getTime());
+outputObj.displayElement("Time zone offet from Greenwich Mean Time in minutes based on viewer's local time zone = " +  now.getTimezoneOffset());
+outputObj.displayElement("Get year = " +  now.getFullYear());
+now.setDate(22);
+outputObj.displayElement("Set date of current month to be 22 = " +  now);
+past.setFullYear(2015);
+outputObj.displayElement("Set year to be 2015 = " +  past);
+old = Date.parse("November 5,1955");
+past.setTime(old);
+
+//Cookies
+function displayCookieVars(){
+	decodedCookieString = decodeURIComponent(document.cookie);
+	var parameters = decodedCookieString.split("&");
+	parameters.map(function(e){
+		element = e.split("=");
+		outputObj.displayElement( element[0] + ":" + element[1] );
+	});
+}
+
+outputObj.displayTitle("Cookies" );
+queryString = "type=car&color=green&date=yesterday";
+encodedCookieString = encodeURIComponent(queryString);
+document.cookie = encodedCookieString;
+outputObj.displayElement("read from cookie -- " + document.cookie);
+if(document.cookie){ displayCookieVars() }
+
+
+//String Object
+var strObjSection = "My name is Mike. This is my demo Javascript script";
+var sliceString = strObjSection.slice(3,15);
+var subStrString = strObjSection.substr(3,12);
+var subStringString = strObjSection.substring(3,15);
+outputObj.displayTitle("String Object");
+outputObj.displayElement ("Slice(): '"+ sliceString + "'  --  Ori = " + strObjSection );
+outputObj.displayElement ("substr(): '"+ subStrString + "'  --  Ori = " + strObjSection );
+outputObj.displayElement ("substring(): '"+ subStringString + "'  --  Ori = " + strObjSection );
+outputObj.displayElement ("charCodeAt(): " + strObjSection.charCodeAt(4));
+outputObj.displayElement ("indexOf(): 'i`' : " + strObjSection.indexOf('i'));
+outputObj.displayElement ("lastIndexOf(): 'i' : " + strObjSection.lastIndexOf('i'));
+outputObj.displayElement ("fromCharCode(): 'i' : " + String.fromCharCode(97));
+outputObj.displayElement ("localeCompare(): b,a:  + a<b in locals chars , this will be ordered as a,b");
+
+
 
 //Focus & Blue
 focus_blur.onfocus = function(){ console.log("focus text now"); }
@@ -183,6 +262,11 @@ d1.addEventListener("click",hightLight,false );
 d2.addEventListener("click", hightLight, true);
 d3.addEventListener("click", hightLight, false);
 preventDefaultA.addEventListener("click", function(e){ console.log(this.id); e.preventDefault(); }, false);
+
+//Math Obj
+outputObj.displayTitle("Math Object" );
+outputObj.displayElement("PI = " + Math.PI);
+outputObj.displayElement(  );
 
 //Event Handler
 outputObj.displayTitle("Event Handler" );

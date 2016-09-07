@@ -106,3 +106,110 @@ print();
 The main browser window is often proteced from being moved, resized, closed, or otherwise manipulate for ssecurity reasons. Example, open a bad site while clsoing the main window. Many of the methods mentioned such as resizeTo don't do any;thin wwhen called in the main window or display a warnin to the view. Browsers allow you more control of pop-up window.
 
 Caution- some browser doesn't allow resizeTo or moveTo. some open in a new tab or in main browser rather tahn popup. 
+
+--
+
+Date Object
+
+JavaScript predefined object. To use this object, you need to create an instance of the object to which you can refer
+
+var time = new Date(); //default date is current date.
+var past = new Date("November 5,1955"); //speficiy past date
+
+--
+
+String Object
+
+String Obj != String literal. String Liter only has value. String Obj is an object value.Obj contains name-value pair
+var s1 = "a";
+var s2 = "a";
+true s1 == s3
+
+when string literal uses string obj method, a temp strin obj will be returned.
+
+
+var s1 = new String("a");
+var s2 = new String("a");
+s1 != s2 because they're comparing the object value.  They're not the same object.
+
+Properties of String Object
+charAt() - Finds out which char is at a given position in a string
+charcodeAt() - Same as charAt() except finding a char code
+conccat() 
+slice(start,end-up to but not included) - Pulls out a specified section of a string value and returns a new string
+substr() - a portion of string specified with a string position and ending after a certain number of chars to be returned.
+substring() - 
+indexOf()
+lastIndexOf()
+toLowerCase()
+toUppercase()
+toString()
+fromCharCode()
+localeCompare()
+match() return array. else -1
+replace()
+split()
+search()
+
+--
+
+Cookies
+
+A cookie is a small text file that is stored on the end usere's computer. 
+
+cookies must be 4KB(4000 characters) each or less.
+A browser can accept up to only 20 cookies from a single domain.
+If a number of viewers don't accept cookies, this eliminates any advantages of your cookie(s) to those vieweres
+
+Benefit: help users browse site more effectively. Alert only initiali visiters
+
+Setting a cookie
+-Give a value to the cookie property of the document object.
+-restriction , no spaces, commas, or semicolons in the string
+
+Example: document.cookie = "name=tasty1&fav=sugar"
+
+encodeURIComponent - escape space, commas or semicolons. Cookie accept charater codes, as a CGI program oftend does.  might look like %20 , %41. The method is under window object.
+
+var thetext = "name=tasty1&fav=chocolate chip";
+newtext = encodeURIComponent(thetext);
+document.cookie = newtext;
+
+
+set an expiration Date
+Add a small bit of code to make it expire
+expdate = ";expires=Mon, 30 Mar 2015 13:00:00 UTC";
+newtext = codeURIComponent(thetext)
+newtext += expdate;
+document.cookie = newtext;
+
+Read a cookie
+ var mycookie = document.cookie;
+ fixed_cookie = decodeURIComponent(mycookie));
+ pairs = fixed_cookoie.split("&");
+ name_propoval = name.split("=");
+
+ name_propoval[0] - value of name
+ name_propoval[1] - value of tastyl
+
+ --
+
+ Regular Expresions
+ more power to handle stings in a script. It allow you to form patterns that can nbe matched against string 
+
+ To create a RegExp literal
+ var varname = /pattern/flags <-- g,i,m
+
+ var tomatch = /our/
+ is_a_match = tomatch.test("pour");
+
+ if(is_a_match)
+
+Methods
+replace()
+match() It returns an array containing one or more matches, depending on how it's used. -1 if not found.
+search(), If found, position in the string where the begining of the match was found otherwise -1 returns.
+
+
+
+
