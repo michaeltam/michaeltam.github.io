@@ -211,5 +211,27 @@ match() It returns an array containing one or more matches, depending on how it'
 search(), If found, position in the string where the begining of the match was found otherwise -1 returns.
 
 
+--
 
+Forms
 
+Use 'document.forms' to get all the form, document.forms[0] to get the first child
+set <form name='mikeForm'> and access with document.mikeForm>
+Only the top form will be selected if multiple forms have the same name"
+
+Property
+action: value of the action attribute in the html form tag
+autocomplete
+elements - array that inclues an array element for each form e in the html
+encoding or enctype
+length
+method - value of the method attribute
+name
+noValidate - value of the novalidate atribute 
+target
+
+--
+
+Useful Lint tool online
+JSLint - www.jslint.com
+JSHint - www.jshint.com

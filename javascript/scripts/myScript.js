@@ -169,6 +169,15 @@ nextStory.addEventListener("click",function(){
 	newwindow.moveTo(500,200); 
 },false);
 
+
+//image change
+im = document.getElementById("imageChange_square");
+function on_image(){ im.src="./images/square_2.png"; }
+function off_image(){ im.src="./images/square_1.png"; }
+imageChange_square.addEventListener("mouseenter",on_image,false);
+imageChange_square.addEventListener("mouseleave",off_image,false);
+
+
 //Date Object
 outputObj.displayTitle("Date Object");
 
@@ -213,6 +222,31 @@ past.setFullYear(2015);
 outputObj.displayElement("Set year to be 2015 = " +  past);
 old = Date.parse("November 5,1955");
 past.setTime(old);
+
+//Forms
+outputObj.displayTitle("Forms");
+outputObj.displayElement("<strong>List of property</string>");
+outputObj.displayElement("action, autocomplete, elements, encoding, length, method, name, noValidate, target");
+outputObj.displayElement("<strong>Methods</strong>");
+outputObj.displayElement("checkValidity(), dispatchFormChanged(), idspatchFormInput(), item(), submit(). reset()");
+demoForm.addEventListener("submit", function(e){
+	//console.log(this);
+	firstName = demoForm_firstName.value;
+	lastName = demoForm_lastName.value;
+
+	validation = /[a-zA-Z_']{1,10}/;
+
+	if ( (!validation.test(firstName) || !validation.test(lastName)) || !demoForm_agree.checked){
+		console.log("Either first or last name didn't follow the rule");
+		e.preventDefault();	
+		return false;
+	}
+
+	e.preventDefault();	
+	console.log("Will submit");
+	this.reset();
+});
+
 
 //Cookies
 function displayCookieVars(){
